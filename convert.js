@@ -1,5 +1,6 @@
 function dollarsToRubles(dollars) {
-    let dollarsCount = dollars * 1.25;
-    return dollarsCount * 60;
+  const DOLLAR_TO_RUBLE_RATE = 75; // Assuming the exchange rate is 1 USD = 75 RUB
+  return dollars * DOLLAR_TO_RUBLE_RATE;
 }
+
 module.exports = dollarsToRubles;
