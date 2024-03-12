@@ -1,8 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const createError = require('http-errors');
-const total = require('../total')
-const convert = require('../convert')
 
 // Products Array
 const products = [{ id: '1', name: 'Playstation 5', inStock: false }];
@@ -30,14 +28,6 @@ router.post('/', (req, res, next) => {
     const newProduct = { id: "'" + newId + "'", name: body.name, inStock: false, };
     products.push(newProduct);
     res.status(201).json(newProduct);
-});
-
-router.post('/total', (req, res) => {
-    const { body } = req;
-    var values = body.values;
-    var result = total(values);
-    var convertResult = convert(result);
-    res.json(convertResult);
 });
 
 module.exports = router;
