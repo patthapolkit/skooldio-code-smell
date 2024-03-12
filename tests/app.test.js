@@ -19,20 +19,6 @@ describe('GET /', () => {
                 );
             });
     });
-    it('POST / => Convert', () => {
-        return (
-            request(app)
-                .post('/total')
-                .send({
-                    values: '1,2',
-                })
-                .expect('Content-Type', /json/)
-                .then((response) => {
-                    expect(response.body).toEqual(225);
-                })
-        );
-    });
-
 
     it('GET / => items by ID', () => {
         return request(app)
@@ -53,7 +39,9 @@ describe('GET /', () => {
     it('GET /id => 404 if item not found', () => {
         return request(app).get('/10000000000').expect(404);
     });
+});
 
+describe('POST /', () => {
     it('POST / => create NEW item', () => {
         return (
             request(app)
@@ -77,5 +65,19 @@ describe('GET /', () => {
 
     it('POST / => item name correct data type check', () => {
         return request(app).post('/').send({ name: 123456789 }).expect(400);
+    });
+
+    it('POST / => Convert', () => {
+        return (
+            request(app)
+                .post('/total')
+                .send({
+                    values: '1,2',
+                })
+                .expect('Content-Type', /json/)
+                .then((response) => {
+                    expect(response.body).toEqual(225);
+                })
+        );
     });
 });
