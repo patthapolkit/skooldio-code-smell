@@ -1,20 +1,19 @@
 function total(numbers) {
-  var result = 0;
-  var parts = numbers.split(",");
-  for (var i = 0; i < parts.length; i++) {
-    var integer = parseInt(parts[i]);
-    if (isInterger(integer) && isInRange(integer)) {
-      result += integer;
-    }
-  }
+  const result = numbers
+    .split(",")
+    .map((part) => parseInt(part))
+    .filter(checkIsInteger)
+    .filter(checkIsInValidRange)
+    .reduce((acc, curr) => acc + curr, 0);
+
   return result;
 }
 
-function isInterger(integer) {
+function checkIsInteger(integer) {
   return !isNaN(integer);
 }
 
-function isInRange(integer) {
+function checkIsInValidRange(integer) {
   return integer >= 0 && integer <= 1000;
 }
 
